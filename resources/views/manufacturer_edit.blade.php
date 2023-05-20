@@ -15,9 +15,24 @@
         @csrf
         @method('put')
         <label for='manufacturer_name'>Manufacturer name</label>
-        <input type="text" name="manufacturer_name" id="manufacturer_name" value="{{
-$manufacturer->name }}">
+        <input type="text" name="manufacturer_name" id="manufacturer_name" value="{{old('manufacturer_name',$manufacturer->name) }}">
+        <br>
+        <label for="founded">Founded year</label>
+        <input type="number" name="founded" id="founded" value="{{old('founded',$manufacturer->founded)}}">
+        <br>
+        <label for="website">Website</label>
+        <input type="text" name="website" id="website" value="{{old('website',$manufacturer->website)}}">
+        <br>
         <button type="submit" value="Update">Save changes</button>
+        @if (count($errors) > 0)
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </form>
 </body>
 

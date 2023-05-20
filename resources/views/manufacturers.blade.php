@@ -17,7 +17,11 @@
         @foreach ($manufacturers as $manufacturer)
         <li>
             <a href="{{action([App\Http\Controllers\ManufacturerController::class, 'show'], [$manufacturer->id])}}">{{ $manufacturer->name }}</a>
-            <form method="POST" action={{action([App\Http\Controllers\ManufacturerController::class, 'destroy'], [$manufacturer->id, $country->code]) }}>
+            <br>
+            <form style="display:inline-block;" method="GET" action={{action([App\Http\Controllers\ManufacturerController::class, 'edit'], [$manufacturer->id, $country->code]) }}>
+                <button type="submit" value="delete">Edit</button>
+            </form>
+            <form style="display:inline-block;" method="POST" action={{action([App\Http\Controllers\ManufacturerController::class, 'destroy'], [$manufacturer->id, $country->code]) }}>
                 @csrf
                 @method('DELETE')
                 <button type="submit" value="delete">Delete</button>
